@@ -1,1 +1,0 @@
-@Rishabh : add display links to the admin interface
