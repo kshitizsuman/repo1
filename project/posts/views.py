@@ -12,7 +12,7 @@ def post_detail(request):
 		"title" : "Detail",
 		"instance" : instance,
 	}
-	return render(request,"single.html",context )
+	return render(request,"index.html",context )
 
 def post_list(request):
 	queryset = Post.objects.all()
