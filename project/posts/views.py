@@ -7,10 +7,16 @@ def post_create(request):
 	return HttpResponse("<h1>Create")
 
 def post_detail(request):
-	return HttpResponse("<h1>Post detail")
+	context ={
+		"title" : "Detail"
+	}
+	return render(request,"index.html",context )
 
 def post_list(request):
-	return HttpResponse("<h1>List view.")
+	context ={
+		"title" : "List"
+	}
+	return render(request,"index.html",context )
 
 def post_update(request):
 	return HttpResponse("<h1>Update Post.")
