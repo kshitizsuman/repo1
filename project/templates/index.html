@@ -4,14 +4,12 @@
 <body>
 	<h1>This is a {{ title }}.</h1>
 
-{% for obj in object_list %}
 
-{{ obj.title }}<br/>
-{{ obj.content }}<br/>
-{{ obj.timestamp }}<br/>
-{{ obj.updated }}<br/>
-{{ obj.id }}<br/>
+{{ instance.title }}<br/>
+{{ instance.content }}<br/>
+{{ instance.timestamp }}<br/>
+{{ instance.updated }}<br/>
+{{ instance.id }}<br/>
 
-{% endfor %}
 </body>
 </html>
