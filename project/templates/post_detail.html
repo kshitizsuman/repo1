@@ -3,14 +3,13 @@
 {% block head_title %}{{ instance.title }} | {{ block.super }}{% endblock head_title %}
 
 {% block content %}
-	<h1>This is a {{ title }}.</h1>
-}
+	<div class="col-sm-8 col-sm-offset-2">
+	<h1>This is a {{ title }}.<small> {{ instance.timestamp|timesince }} ago</small></h1>
 
 
 {{ instance.title }}<br/>
-{{ instance.content }}<br/>
-{{ instance.timestamp }}<br/>
+{{ instance.content | linebreaks}}<br/>
 {{ instance.updated }}<br/>
 {{ instance.id }}<br/>
-
-{% endblock content %}
+</div>
+{% endblock content %}	
