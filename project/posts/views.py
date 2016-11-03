@@ -1,9 +1,6 @@
 from django.contrib import messages
-<<<<<<< HEAD
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
-=======
->>>>>>> fc84e48dbcaa9b1b74a4cb681a3762b45d8b6ab5
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render , get_object_or_404,redirect
 
@@ -33,7 +30,6 @@ def post_detail(request , id=None):
 	return render(request,"post_detail.html",context )
 
 def post_list(request):
-<<<<<<< HEAD
 	queryset_list = Post.objects.all()
 	paginator = Paginator(queryset_list, 2) # Show 25 contacts per page
 	page_request_var = "page"
@@ -64,15 +60,6 @@ def listing(request):
 
 
 
-=======
-	queryset = Post.objects.all()
-	context ={
-		"object_list" : queryset,
-		"title" : "List"
-	}
-	return render(request,"post_list.html",context )
-
->>>>>>> fc84e48dbcaa9b1b74a4cb681a3762b45d8b6ab5
 def post_update(request,id =None):
 	instance = get_object_or_404(Post, id=id)
 	form = PostForm(request.POST or None , instance=instance)
