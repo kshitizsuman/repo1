@@ -4,8 +4,11 @@
 
 {% block content %}
 	<div class="col-sm-8 col-sm-offset-2">
+	
 	<h1>This is a {{ title }}.<small> {{ instance.timestamp|timesince }} ago</small></h1>
-
+	{% if instance.image %}
+	<img src="{{ instance.image.url }}" class="img-responsive"  />
+	{% endif %}
 
 {{ instance.title }}<br/>
 {{ instance.content | linebreaks}}<br/>

@@ -9,7 +9,7 @@ from .forms import PostForm
 from .models import Post
 
 def post_create(request):
-	form = PostForm(request.POST or None)
+	form = PostForm(request.POST or None, request.FILES or None)
 	if form.is_valid():
 		instance = form.save(commit=False)
 		print form.cleaned_data.get("title")
@@ -62,7 +62,7 @@ def listing(request):
 
 def post_update(request,id =None):
 	instance = get_object_or_404(Post, id=id)
-	form = PostForm(request.POST or None , instance=instance)
+	form = PostForm(request.POST or None, request.FILES or None , instance=instance)
 	if form.is_valid():
 		instance = form.save(commit=False)
 		instance.save()
