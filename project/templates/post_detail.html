@@ -5,7 +5,7 @@
 {% block content %}
 	<div class="col-sm-8 col-sm-offset-2">
 	
-	<h1>This is a {{ title }}.<small> {% if instance.draft %} <span style='color:red;'>Draft</span>{% endif %}{{ instance.publish|timesince }} ago</small></h1>
+	<h1>This is a {{ title }}.<small> {% if instance.draft %} <span style='color:red;'>Draft</span> {% endif %}{{ instance.publish|timesince }} ago</small></h1>
 	<p>Author: {{ instance.user }}</p>
 	{% if instance.image %}
 	<img src="{{ instance.image.url }}" class="img-responsive"  />
