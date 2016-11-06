@@ -32,7 +32,19 @@
 <br/>
 
 <div>
-	{{ instance.comment_set.all }}
+	<p class="lead">
+		Comments
+	</p>
+	{% for comment in comments %}
+		<div class="">
+		{{ comment.content }}
+		<br/>
+		-- {{ comment.user }} on <strong>{{ comment.timestamp }}</strong>
+		</div>
+		<hr/>
+	{% endfor %}
+	<!--{{ comments }} 
+	{{ instance.comment_set.all }}-->
 </div>
 
 <div class="fb-comments" data-href={{ request.build_absolute_uri }} data-numposts="5"></div>
