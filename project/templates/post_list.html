@@ -20,7 +20,7 @@
         {% if obj.image %}
         <img src="{{ obj.image.url }}" class="img-responsive"  />
       {% endif %}
-        <p>{{ obj.content|linebreaks|truncatechars:100 }}<br/>
+        <p><div class='content-markdown'>{{ obj.content|truncatechars:100 }}</div><br/>
 {{ obj.updated }}<br/>
 {{ obj.id }}<br/></p>
         <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
