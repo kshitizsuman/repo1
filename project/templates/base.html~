@@ -15,8 +15,6 @@
 
 </style>
 
-{% block head_extra %}  {% endblock head_extra %}
-
 </head>
 
 <body>
@@ -48,14 +46,8 @@ fjs.parentNode.insertBefore(js, fjs);
 	$(document).ready(function(){
 		$(".content-markdown").each(function(){
 			var content = $(".content-markdown").text()
-			console.log(content)
 			var markedContent = marked(content)
-			console.log(markedContent)
 			$(this).html(markedContent)
-		})
-
-		$(".content-markdown img").each(function(){
-			$(this).addClass("img-responsive");
 		})
 	})
 </script>

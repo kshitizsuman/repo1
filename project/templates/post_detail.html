@@ -10,7 +10,7 @@
 	
 	<p><a href="{{ request.build_absolute_uri }}edit">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ request.build_absolute_uri }}delete">Delete</a></p>
 
-	<h1>This is a {{ title }}.<small> {% if instance.draft %} <span style='color:red;'>Draft</span> {% endif %}{{ instance.publish|timesince }} ago</small></h1>
+	
 
 	<p>Author: {{ instance.user }}</p>
 	{% if instance.image %}
@@ -23,7 +23,6 @@
 
 	</p>
 
-{{ instance.title }}<br/>
 <div class='row'>
 <div class='col-sm-10 col-sm-offset-1'>
 <div class='content-markdown'>
