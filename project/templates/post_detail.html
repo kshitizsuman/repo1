@@ -5,9 +5,13 @@
 {% block content %}
 	<div class="col-sm-8 col-sm-offset-2">
 	
+<<<<<<< HEAD
 	<h1>{{ title }}.<small> {% if instance.draft %} <span style='color:red;'>Draft</span> {% endif %}{{ instance.publish|timesince }} ago</small></h1>
 	
 	<p><a href="{{ request.build_absolute_uri }}edit">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ request.build_absolute_uri }}delete">Delete</a></p>
+=======
+	<h1>This is a {{ title }}.<small> {% if instance.draft %} <span style='color:red;'>Draft</span> {% endif %}{{ instance.publish|timesince }} ago</small></h1>
+>>>>>>> e53591142ed9baad318b8c5f005a4b196172affc
 	<p>Author: {{ instance.user }}</p>
 	{% if instance.image %}
 	<img src="{{ instance.image.url }}" class="img-responsive"  />
