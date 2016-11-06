@@ -32,6 +32,8 @@ def post_detail(request , slug=None):
 		if not request.user.is_staff or not request.user.is_superuser:
 			raise Http404
 	share_string = quote_plus(instance.content)
+	current_url = request.resolver_match.url_name
+	print "World" + current_url + "Hello\n"
 	context ={
 		"title" : instance.title,
 		"instance" : instance,
