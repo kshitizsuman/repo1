@@ -7,6 +7,7 @@ from django.db.models.signals import pre_save
 from django.utils import timezone
 from django.utils.text import slugify
 
+from comments.models import Comment
 # Create your models here.
 
 #Post.objects.all()
