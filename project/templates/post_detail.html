@@ -35,12 +35,16 @@
 	<p class="lead">
 		Comments
 	</p>
+	 <form method="POST" action="."> {% csrf_token %}
+            {{ comment_form }}
+            <input type='submit' value='Post comment' class='btn btn-default'>
+        </form>
+	<hr/>
 	{% for comment in comments %}
-		<div class="">
-		{{ comment.content }}
-		<br/>
-		-- {{ comment.user }} on <strong>{{ comment.timestamp }}</strong>
-		</div>
+		<blockquote>
+			<p>{{ comment.content }}</p>
+			<footer>{{ comment.user }} on <strong>{{ comment.timestamp }}</strong></footer>
+		</blockquote>
 		<hr/>
 	{% endfor %}
 	<!--{{ comments }} 
