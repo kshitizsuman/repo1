@@ -3,59 +3,64 @@
 {% block head_title %}{{ instance.title }} | {{ block.super }}{% endblock head_title %}
 
 {% block content %}
-	<div class="col-sm-8 col-sm-offset-2">
-	
-
-	<h1>{{ title }}.<small> {% if instance.draft %} <span style='color:red;'>Draft</span> {% endif %}{{ instance.publish|timesince }} ago</small></h1>
-	
-	<p><a href="{{ request.build_absolute_uri }}edit">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ request.build_absolute_uri }}delete">Delete</a></p>
-
-	
-
+<div class="col-sm-8 col-sm-offset-2">
+	<h1>
+		{{ title }}.<small> {% if instance.draft %} <span style='color:red;'>Draft</span> {% endif %}{{ instance.publish|timesince }} ago</small>
+	</h1>
+	<p>
+		<a href="{{ request.build_absolute_uri }}edit">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ request.build_absolute_uri }}delete">Delete</a>
+	</p>
 	<p>Author: {{ instance.user }}</p>
+	
 	{% if instance.image %}
 	<img src="{{ instance.image.url }}" class="img-responsive"  />
 	{% endif %}
-
-	<p><div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-	<hr/>
-
-
-	</p>
-
-<div class='row'>
-<div class='col-sm-10 col-sm-offset-1'>
-<div class='content-markdown'>
-{{ instance.content}}
-</div>
-<hr/>
-<br/>
-
-<div>
-	<p class="lead">
-		Comments
-	</p>
-	 <form method="POST" action="."> {% csrf_token %}
-            {{ comment_form }}
-            <input type='submit' value='Post comment' class='btn btn-default'>
-        </form>
-	<hr/>
-	{% for comment in comments %}
-		<blockquote>
-			<p>{{ comment.content }}</p>
-			<footer>{{ comment.user }} on <strong>{{ comment.timestamp }}</strong></footer>
-		</blockquote>
+	<p>
+		<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true">
+			
+		</div>
 		<hr/>
-	{% endfor %}
+	</p>
+
+	<div class='row'>
+		<div class='col-sm-10 col-sm-offset-1'>
+			<div class='content-markdown'>
+{{ instance.content}}
+			</div>
+			<hr/>
+			<br/>
+
+			<div>
+				<p class="lead">
+					Comments
+				</p>
+				{% if request.user.is_authenticated %}
+				<form method="POST" action="."> {% csrf_token %}
+	            	{{ comment_form }}
+	            	<br>
+	            	<input type='submit' value='Post comment' class='btn btn-default'>
+	        	</form>
+	        	{% else %}
+	        	<p>You must molin to comment</p>
+	        	{% endif %}
+				<hr/>
+				{% for comment in comments %}
+					<blockquote>
+						<p>{{ comment.content }}</p>
+						<footer>{{ comment.user }} on <strong>{{ comment.timestamp }}</strong></footer>
+					</blockquote>
+					<hr/>
+				{% endfor %}
 	<!--{{ comments }} 
 	{{ instance.comment_set.all }}-->
-</div>
+			</div>
 
-<div class="fb-comments" data-href={{ request.build_absolute_uri }} data-numposts="5"></div>
-</div>
+			<div class="fb-comments" data-href={{ request.build_absolute_uri }} data-numposts="5">
+			</div>
+		</div>
 
-{{ instance.updated }}<br/>
-{{ instance.id }}<br/>
+		{{ instance.updated }}<br/>
+		{{ instance.id }}<br/>
 <!-- <p>
 <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
 Facebook
@@ -72,5 +77,6 @@ Twitter
 Linkedin
 </a>
 </p> -->
+	</div>
 </div>
 {% endblock content %}	
