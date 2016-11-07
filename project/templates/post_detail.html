@@ -3,6 +3,20 @@
 {% block head_title %}{{ instance.title }} | {{ block.super }}{% endblock head_title %}
 
 {% block content %}
+
+{% if request.user.is_authenticated %}
+  <p>Welcome {{ request.user }}</p>
+  <a href="{{ dashboard }}">Home</a>
+  <a href="{{ logoutlink }}"> Logout</a><br>
+
+{% else %}
+  <a href="{{ dashboard }}">Home</a>
+  <a href="{{ register }}"> Register</a><br>
+<a href="{{ loginlink }}"> Login</a><br>
+
+
+{% endif %}
+
 <div class="col-sm-8 col-sm-offset-2">
 	<h1>
 		{{ title }}.<small> {% if instance.draft %} <span style='color:red;'>Draft</span> {% endif %}{{ instance.publish|timesince }} ago</small>
@@ -10,7 +24,7 @@
 	<p>
 		<a href="{{ request.build_absolute_uri }}edit">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ request.build_absolute_uri }}delete">Delete</a>
 	</p>
-	<p>Author: {{ instance.user }}</p>
+	<p>Author : {{ instance.user }}</p>
 	
 	{% if instance.image %}
 	<img src="{{ instance.image.url }}" class="img-responsive"  />
@@ -41,7 +55,7 @@
 	            	<input type='submit' value='Post comment' class='btn btn-default'>
 	        	</form>
 	        	{% else %}
-	        	<p>You must molin to comment</p>
+	        	<p>You must login to comment</p>
 	        	{% endif %}
 				<hr/>
 				{% for comment in comments %}

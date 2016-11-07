@@ -2,6 +2,20 @@
 
 {% block content %}
 
+{% if request.user.is_authenticated %}
+  <p>Welcome {{ request.user }}</p>
+  <a href="{{ dashboard }}">Home</a>
+  <a href="{{ logoutlink }}"> Logout</a><br>
+
+{% else %}
+  <a href="{{ dashboard }}">Home</a>
+  <a href="{{ register }}"> Register</a><br>
+<a href="{{ loginlink }}"> Login</a><br>
+
+  
+
+{% endif %}
+
 
 <div class="col-sm-8 col-sm-offset-2">
   <h1></h1>
