@@ -40,6 +40,7 @@ def post_detail(request , slug=None):
 	register=domain+"/register/"
 	loginlink =domain+'/login/'
 	logoutlink =domain+'/logout/'
+	createlink = domain+'/create/'
 	if instance.draft or instance.publish > timezone.now().date():
 		pass
 	share_string = quote_plus(instance.content)
@@ -64,7 +65,7 @@ def post_detail(request , slug=None):
 
 	comments = instance.comments
 	context ={
-		"register":register,"dashboard":domain,"loginlink":loginlink,"logoutlink":logoutlink,
+		"register":register,"dashboard":domain,"loginlink":loginlink,"logoutlink":logoutlink,"createlink":createlink,
 		"title" : instance.title,
 		"instance" : instance,
 		"share_string": share_string,

@@ -5,24 +5,55 @@
 {% block content %}
 
 {% if request.user.is_authenticated %}
-  <p>Welcome {{ request.user }}</p>
-  <a href="{{ dashboard }}">Home</a>
-  <a href="{{ logoutlink }}"> Logout</a><br>
+<div class="col-sm-8 col-sm-offset-2">
+  <div class="row">
+    <div class="container">
+      <div class="col-sm-4">
+        <h4>Welcome {{ request.user }}</h4>
+      </div>
+      <div class="col-sm-4">
+        <div class="btn-group pull-right" role="group" aria-label="...">
+          <button type="button" class="btn btn-default"><a href="{{ dashboard }}"> Home </a></button>
+          <button type="button" class="btn btn-default"><a href="{{ createlink }}">Create new post</a><br></button>
+          <button type="button" class="btn btn-default"><a href="{{ logoutlink }}">Logout</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 {% else %}
-  <a href="{{ dashboard }}">Home</a>
-  <a href="{{ register }}"> Register</a><br>
-<a href="{{ loginlink }}"> Login</a><br>
+<div class="col-sm-8 col-sm-offset-2">
+  <div class="row">
+    <div class="container">
+      <div class="col-sm-4">
+        
+      </div>
+      <div class="col-sm-4">
+        <div class="btn-group pull-right" role="group" aria-label="...">
+          <button type="button" class="btn btn-default"><a href="{{ dashboard }}"> Home </a></button>
+          <button type="button" class="btn btn-default"><a href="{{ loginlink }}"> Login </a></button>
+          <button type="button" class="btn btn-default"><a href="{{ register }}"> Register </a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-
+  
 {% endif %}
+
 
 <div class="col-sm-8 col-sm-offset-2">
 	<h1>
 		{{ title }}.<small> {% if instance.draft %} <span style='color:red;'>Draft</span> {% endif %}{{ instance.publish|timesince }} ago</small>
 	</h1>
 	<p>
-		<a href="{{ request.build_absolute_uri }}edit">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ request.build_absolute_uri }}delete">Delete</a>
+		<div class="btn-group pull-right" role="group" aria-label="...">
+          <button type="button" class="btn btn-default"><a href="{{ request.build_absolute_uri }}"> Edit </a></button>
+          <button type="button" class="btn btn-default"><a href="{{ request.build_absolute_uri }}"> Delete </a></button>
+        </div>
 	</p>
 	<p>Author : {{ instance.user }}</p>
 	

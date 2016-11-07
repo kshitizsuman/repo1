@@ -9,12 +9,25 @@
 
 
 {% block content %}
-{% if request.user.is_authenticated %}
-<p>Welcome {{ request.user }}</p>
-  <a href="{{ dashboard }}">Home</a>
-  <a href="{{ logoutlink }}">Logout</a><br>
 
-<div class="col-sm-6">
+{% if request.user.is_authenticated %}
+<div class="col-sm-12">
+  <div class="row">
+    <div class="container">
+      <div class="col-sm-6">
+        <h4>Welcome {{ request.user }}</h4>
+      </div>
+      <div class="col-sm-6">
+        <div class="btn-group pull-right" role="group" aria-label="...">
+          <button type="button" class="btn btn-default"><a href="{{ dashboard }}"> Home </a></button>
+          <button type="button" class="btn btn-default"><a href="{{ logoutlink }}">Logout</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-5">
 	<h1>Preview</h1>
 <div class="content-preview">
 	<h3 id="preview-title"></h3>
@@ -22,7 +35,7 @@
 </div>
 </div>
 
-<div class="col-sm-6">
+<div class="col-sm-7">
 <h1>Form</h1>
 
 <form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}

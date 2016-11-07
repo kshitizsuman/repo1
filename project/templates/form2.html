@@ -2,15 +2,31 @@
 
 
 {% block content %}
-<div class='col-sm-6 col-sm-offset-3'>
-<a href="{{ register }}"> Register</a><br>
-<a href="{{ loginlink }}"> Login</a><br>
-<a href="{{ dashboard }}">Home</a>
+
+<div class="col-sm-8 col-sm-offset-2">
+  <div class="row">
+    <div class="container">
+      <div class="col-sm-4">
+        
+      </div>
+      <div class="col-sm-4">
+        <div class="btn-group pull-right" role="group" aria-label="...">
+          <button type="button" class="btn btn-default"><a href="{{ dashboard }}"> Home </a></button>
+          <button type="button" class="btn btn-default"><a href="{{ loginlink }}">Login</a><br></button>
+          <button type="button" class="btn btn-default"><a href="{{ register }}">Register</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-8 col-sm-offset-2">
 <h4>{{ title }}</h4>
 <hr/>
 
 <form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
-{{ form}}
+{{ form }}
+<br>
+<h3>You have been logged out.</h3>
 </form>
 </div>
 {% endblock content %}
