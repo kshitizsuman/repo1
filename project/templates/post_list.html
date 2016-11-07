@@ -5,8 +5,8 @@
 {% if request.user.is_authenticated %}
   <p>Welcome {{ request.user }}</p>
   <a href="{{ dashboard }}">Home</a>
-  <a href="{{ logoutlink }}"> Logout</a><br>
-
+  <a href="{{ logoutlink }}">Logout</a>
+  <a href="{{ createlink }}">Create new post</a><br>
 {% else %}
   <a href="{{ dashboard }}">Home</a>
   <a href="{{ register }}"> Register</a><br>

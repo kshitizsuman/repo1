@@ -17,6 +17,7 @@ def post_create(request):
 	domain="http://"+request.META['HTTP_HOST']
 	register=domain+"/register/"
 	loginlink =domain+'/login/'
+	logoutlink =domain+'/logout/'
 	if not request.user.is_authenticated():
 		return render(request,"form.html",{"message":"You must login to continue","register":register,"dashboard":domain,"loginlink":loginlink})
 	form = PostForm(request.POST or None, request.FILES or None)
@@ -29,6 +30,7 @@ def post_create(request):
 		return HttpResponseRedirect(instance.get_absolute_url())
 	context ={
 		"form":form,
+		"dashboard":domain,"logoutlink":logoutlink,
 	}
 	return render(request,"post_form.html",context )
 
@@ -76,6 +78,7 @@ def post_list(request):
 	register=domain+"/register/"
 	loginlink =domain+'/login/'
 	logoutlink =domain+'/logout/'
+	createlink = domain+'/create/'
 	today = timezone.now().date()
 	queryset_list = Post.objects.active()
 	if request.user.is_staff or request.user.is_superuser:
@@ -103,6 +106,7 @@ def post_list(request):
 		queryset = paginator.page(paginator.num_pages)
 	context ={
 		"register":register,"dashboard":domain,"loginlink":loginlink,"logoutlink":logoutlink,
+		"createlink":createlink,
 		"object_list" : queryset,
 		"title" : "List",
 		"page_request_var": page_request_var,
