@@ -6,8 +6,7 @@ from django.core.urlresolvers import reverse
 from django.db.models.signals import pre_save
 from django.utils import timezone
 from django.utils.text import slugify
-from comments.models import Comment
-from django.contrib.contenttypes.models import ContentType
+
 # Create your models here.
 
 #Post.objects.all()
@@ -24,7 +23,7 @@ def upload_location(instance, filename):
 	return "%s/%s" %(instance.id, filename)
 
 class Post(models.Model):
-	user=models.ForeignKey(settings.AUTH_USER_MODEL)
+	user=models.ForeignKey(settings.AUTH_USER_MODEL,default=1)
 	title = models.CharField(max_length=120)
 	slug = models.SlugField(unique=True)
 	image = models.ImageField(upload_to=upload_location,
@@ -58,18 +57,6 @@ class Post(models.Model):
 
 	class Meta:
 		ordering = ["-timestamp", "-updated"]
-
-	@property
-	def comments(self):
-		instance = self
-		qs = Comment.objects.filter_by_instance(instance)
-		return qs
-	
-	@property
-	def get_content_type(self):
-		instance = self
-		content_type = ContentType.objects.get_for_model(instance.__class__)
-		return content_type
 
 def create_slug(instance,new_slug=None):
 	slug = slugify(instance.title)

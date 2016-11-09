@@ -3,109 +3,39 @@
 {% block head_title %}{{ instance.title }} | {{ block.super }}{% endblock head_title %}
 
 {% block content %}
-
-{% if request.user.is_authenticated %}
-<div class="col-sm-8 col-sm-offset-2">
-  <div class="row">
-    <div class="container">
-      <div class="col-sm-4">
-        <h4>Welcome {{ request.user }}</h4>
-      </div>
-      <div class="col-sm-4">
-        <div class="btn-group pull-right" role="group" aria-label="...">
-          <button type="button" class="btn btn-default"><a href="{{ dashboard }}"> Home </a></button>
-          <button type="button" class="btn btn-default"><a href="{{ createlink }}">Create new post</a><br></button>
-          <button type="button" class="btn btn-default"><a href="{{ logoutlink }}">Logout</a></button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% else %}
-<div class="col-sm-8 col-sm-offset-2">
-  <div class="row">
-    <div class="container">
-      <div class="col-sm-4">
-        
-      </div>
-      <div class="col-sm-4">
-        <div class="btn-group pull-right" role="group" aria-label="...">
-          <button type="button" class="btn btn-default"><a href="{{ dashboard }}"> Home </a></button>
-          <button type="button" class="btn btn-default"><a href="{{ loginlink }}"> Login </a></button>
-          <button type="button" class="btn btn-default"><a href="{{ register }}"> Register </a></button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-  
-{% endif %}
-
-
-<div class="col-sm-8 col-sm-offset-2">
-	<h1>
-		{{ title }}.<small> {% if instance.draft %} <span style='color:red;'>Draft</span> {% endif %}{{ instance.publish|timesince }} ago</small>
-	</h1>
-	<p>
-		<div class="btn-group pull-right" role="group" aria-label="...">
-          <button type="button" class="btn btn-default"><a href="{{ request.build_absolute_uri }}"> Edit </a></button>
-          <button type="button" class="btn btn-default"><a href="{{ request.build_absolute_uri }}"> Delete </a></button>
-        </div>
-	</p>
-	<p>Author : {{ instance.user }}</p>
+	<div class="col-sm-8 col-sm-offset-2">
 	
+
+	<h1>{{ title }}.<small> {% if instance.draft %} <span style='color:red;'>Draft</span> {% endif %}{{ instance.publish|timesince }} ago</small></h1>
+	
+	<p><a href="{{ request.build_absolute_uri }}edit">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ request.build_absolute_uri }}delete">Delete</a></p>
+
+	<h1>This is a {{ title }}.<small> {% if instance.draft %} <span style='color:red;'>Draft</span> {% endif %}{{ instance.publish|timesince }} ago</small></h1>
+
+	<p>Author: {{ instance.user }}</p>
 	{% if instance.image %}
 	<img src="{{ instance.image.url }}" class="img-responsive"  />
 	{% endif %}
-	<p>
-		<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true">
-			
-		</div>
-		<hr/>
+
+	<p><div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+	<hr/>
+
+
 	</p>
 
-	<div class='row'>
-		<div class='col-sm-10 col-sm-offset-1'>
-			<div class='content-markdown'>
+{{ instance.title }}<br/>
+<div class='row'>
+<div class='col-sm-10 col-sm-offset-1'>
+<div class='content-markdown'>
 {{ instance.content}}
-			</div>
-			<hr/>
-			<br/>
+</div>
+<hr/>
+<br/>
+<div class="fb-comments" data-href={{ request.build_absolute_uri }} data-numposts="5"></div>
+</div>
 
-			<div>
-				<p class="lead">
-					Comments
-				</p>
-				{% if request.user.is_authenticated %}
-				<form method="POST" action="."> {% csrf_token %}
-	            	{{ comment_form }}
-	            	<br>
-	            	<input type='submit' value='Post comment' class='btn btn-default'>
-	        	</form>
-	        	{% else %}
-	        	<p>You must login to comment</p>
-	        	{% endif %}
-				<hr/>
-				{% for comment in comments %}
-					<blockquote>
-						<p>{{ comment.content }}</p>
-						<footer>{{ comment.user }} on <strong>{{ comment.timestamp }}</strong></footer>
-					</blockquote>
-					<hr/>
-				{% endfor %}
-	<!--{{ comments }} 
-	{{ instance.comment_set.all }}-->
-			</div>
-
-			<div class="fb-comments" data-href={{ request.build_absolute_uri }} data-numposts="5">
-			</div>
-		</div>
-
-		{{ instance.updated }}<br/>
-		{{ instance.id }}<br/>
+{{ instance.updated }}<br/>
+{{ instance.id }}<br/>
 <!-- <p>
 <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
 Facebook
@@ -122,6 +52,5 @@ Twitter
 Linkedin
 </a>
 </p> -->
-	</div>
 </div>
 {% endblock content %}	
