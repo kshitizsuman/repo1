@@ -1,8 +1,50 @@
 {% extends "base.html" %}
 
+{% block head_extra %}  
+{{ form.media }}
+
+
+{% endblock head_extra %}
+
+
 
 {% block content %}
-<div class="col-sm-6 col-sm-offset-3">
+
+<<<<<<< HEAD
+<style>
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+</style>
+=======
+>>>>>>> f6d1ed6813974c03abb736c11d527fbf0d5f2065
+{% if request.user.is_authenticated %}
+<div class="col-sm-12">
+  <div class="row">
+    <div class="container">
+      <div class="col-sm-6">
+        <h4>Welcome {{ request.user }}</h4>
+      </div>
+      <div class="col-sm-6">
+        <div class="btn-group pull-right" role="group" aria-label="...">
+          <button type="button" class="btn btn-default"><a href="{{ dashboard }}"> Home </a></button>
+          <button type="button" class="btn btn-default"><a href="{{ logoutlink }}">Logout</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-5">
+	<h1>Preview</h1>
+<div class="content-preview">
+	<h3 id="preview-title"></h3>
+	<p id="preview-content"></p>
+</div>
+</div>
+
+<div class="col-sm-7">
 <h1>Form</h1>
 
 <form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
@@ -10,4 +52,9 @@
 <input type='submit' class="btn btn-default" value='Create Post' />
 </form>
 </div>
+{% else %}
+       	<p>You must login to create post.Unauthorised users are not allowed.This act will be reported and strict actions will be taken. (may be SSAC ) .</p>
+{% endif %}
+
+
 {% endblock content %}

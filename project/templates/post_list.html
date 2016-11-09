@@ -2,27 +2,89 @@
 
 {% block content %}
 
+<style>
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+</style>
+{% if request.user.is_authenticated %}
+<<<<<<< HEAD
+
+=======
+>>>>>>> f6d1ed6813974c03abb736c11d527fbf0d5f2065
+<div class="col-sm-8 col-sm-offset-2">
+  <div class="row">
+    <div class="container">
+      <div class="col-sm-4">
+<<<<<<< HEAD
+        <h4>Welcome <a href="{{ userpostlist }}">{{ request.user }}</a></h4>
+=======
+        <h4>Welcome {{ request.user }}</h4>
+>>>>>>> f6d1ed6813974c03abb736c11d527fbf0d5f2065
+      </div>
+      <div class="col-sm-4">
+        <div class="btn-group pull-right" role="group" aria-label="...">
+          <button type="button" class="btn btn-default"><a href="{{ dashboard }}"> Home </a></button>
+          <button type="button" class="btn btn-default"><a href="{{ createlink }}">Create new post</a><br></button>
+          <button type="button" class="btn btn-default"><a href="{{ logoutlink }}">Logout</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% else %}
+<div class="col-sm-8 col-sm-offset-2">
+  <div class="row">
+    <div class="container">
+      <div class="col-sm-4">
+        
+      </div>
+      <div class="col-sm-4">
+        <div class="btn-group pull-right" role="group" aria-label="...">
+          <button type="button" class="btn btn-default"><a href="{{ dashboard }}"> Home </a></button>
+          <button type="button" class="btn btn-default"><a href="{{ loginlink }}"> Login </a></button>
+          <button type="button" class="btn btn-default"><a href="{{ register }}"> Register </a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+{% endif %}
+
 
 <div class="col-sm-8 col-sm-offset-2">
-  <h1>{{ title }}.</h1>
-<form method='GET' action=''>
-<input type='text' name='q' placeholder='Search posts' value='{{ reqquest.GET.q }}'/>
-<input type='submit' value='Search'/>
+  <h1></h1>
+<form method='GET' action='' class="row">
+<div class="col-sm-6">
+    <div class="input-group">
+      <input class="form-control" type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
+      <span class="input-group-btn">
+        <input class="btn btn-default" type='submit' value='Search'/>
+      </span>
+    </div>
+</div>
 </form>
 {% for obj in object_list %}
 <div class="row">
   <div class="col-sm-12">
     <div class="thumbnail">
 
-      <div class="caption">
-        {% if obj.draft %}<h3>Staff only: Draft </h3> {% endif %} {% if obj.publish > today %}<h3> Staff only: Future Post </h3> {% endif %}
-        <h3><a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a><small> {{ obj.publish|timesince }} </small></h3>
-        {% if obj.image %}
+      {% if obj.image %}
         <img src="{{ obj.image.url }}" class="img-responsive"  />
       {% endif %}
-        <p>{{ obj.content|truncatechars:100 }}<br/>
-{{ obj.updated }}<br/>
-{{ obj.id }}<br/></p>
+      
+      <div class="caption">
+        {% if obj.draft %}<h3>Staff only: Draft </h3> {% endif %} {% if obj.publish > today %}<h3> Staff Only: Future Post </h3> {% endif %}
+        <h3><a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a><small> {{ obj.publish|timesince }} </small></h3>
+        
+        <p class="content-markdown">{{ obj.content| truncatechars:0 }}<br/>
+<br/><br/></p>
+  {{ obj.updated }}
         <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
       </div>
     </div>

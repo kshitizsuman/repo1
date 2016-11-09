@@ -9,11 +9,18 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-
+<style>
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+</style>
 <style type="text/css">
 	{% block style %}{% endblock %}
 
 </style>
+
+{% block head_extra %}  {% endblock head_extra %}
 
 </head>
 
@@ -43,13 +50,58 @@ fjs.parentNode.insertBefore(js, fjs);
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
 <script type="text/javascript">
-	/*$(document).ready(function(){
+	$(document).ready(function(){
 		$(".content-markdown").each(function(){
 			var content = $(".content-markdown").text()
+			console.log(content)
 			var markedContent = marked(content)
+			console.log(markedContent)
 			$(this).html(markedContent)
 		})
-	})*/
+
+		$(".content-markdown img").each(function(){
+			$(this).addClass("img-responsive");
+		})
+
+		$(".post-detail-item img").each(function(){
+			$(this).addClass("img-responsive");
+		})
+
+		
+		//console.log(titleValue)
+		var contentItem = $("#id_content");
+		var contentValue = $("#id_content").val();
+		$("#preview-content").html(marked(contentValue))
+
+		var contentInput = $("#id_content");
+		function setContent(value){
+			var markedContent = marked(value)
+			$("#preview-content").html(markedContent)
+			$("#preview-content img").each(function(){
+				$(this).addClass("img-responsive")
+			})
+			
+		}
+		setContent(contentInput.val())
+
+		contentInput.keyup(function(){
+			var newContent = $(this).val()
+			setContent(newContent)
+		})
+
+		var titleInput = $("#id_title");
+		//var titleValue = $("#id_title").val();
+		
+
+		function setTitle(value){
+			$("#preview-title").text(value)
+		}
+		setTitle(titleInput.val())
+		titleInput.keyup(function(){
+			var newContent = $(this).val()
+			setTitle(newContent)
+		})
+	})
 </script>
 </body>
 </html>

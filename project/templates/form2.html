@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<<<<<<< HEAD
+<style>
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+</style>
+=======
+
+>>>>>>> f6d1ed6813974c03abb736c11d527fbf0d5f2065
+<div class="col-sm-8 col-sm-offset-2">
+  <div class="row">
+    <div class="container">
+      <div class="col-sm-4">
+        
+      </div>
+      <div class="col-sm-4">
+        <div class="btn-group pull-right" role="group" aria-label="...">
+          <button type="button" class="btn btn-default"><a href="{{ dashboard }}"> Home </a></button>
+          <button type="button" class="btn btn-default"><a href="{{ loginlink }}">Login</a><br></button>
+          <button type="button" class="btn btn-default"><a href="{{ register }}">Register</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-8 col-sm-offset-2">
+<h4>{{ title }}</h4>
+<hr/>
+
+<form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+{{ form }}
+<br>
+<h3>You have been logged out.</h3>
+</form>
+</div>
+{% endblock content %}
