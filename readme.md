@@ -1,5 +1,5 @@
 # Group 45
-<strong>Packages Required :</strong>
+### Packages Required
 ```sh
 $ sudo pip install django==1.9
 $ sudo pip install django-pagedown
