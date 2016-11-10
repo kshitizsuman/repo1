@@ -1,0 +1,115 @@
+                                                 ***  GROUP 45  ***
+KSHITIZ SUMAN   14333
+RISHABH BHARDWAJ  14548
+ANUBHAV SHRIVSTAVA   14114
+
+Project Title ---- IIT Kanpur Student's Discussion Forum
+
+Link == http://172.27.34.119/
+
+Technologies Used --
+1. Django ( 1.9 ) ,
+
+2. Sqlite3 Database
+
+3. Markdown Text Feature ,
+
+-->> Markdown is a lightweight markup language with plain text formatting syntax designed so that it
+
+can be converted to HTML and
+
+many other formats using a tool by the same name.
+
+This editor supports various types of technologies such as HTML, Linux Terminal Commands
+
+etc.You can also add links to thepictures and gifs.On adding the links to gifs and pics it shows its preview.
+
+4. Facebook Comment , Like , Share API ,
+
+5. Bootstrap ,
+
+6. Slug
+
+-->> A slug is a short label for something, containing only letters, numbers, underscores or
+
+hyphens.
+
+-->> They're generally used in URLs.
+
+-->> A slug field in Django is used to store and generate valid URLs for your dynamically created
+
+web pages.
+
+We were new to Django.Firstly, we learned Django in a week then we started the project from
+
+scratch .
+
+In the first and second week of the project , we build the basic features such as
+
+1. All posts list view. ( Home Page)
+
+2.Editing the post page for every post.
+
+3.Creating the post page for every page.
+
+4.Deleting any post.In the third that is the final week of the project we added,
+
+5.We added the comment feature to every post by using the Facebook Comment Plugin.
+
+6.We also added the Like share feature using the Facebook Plugin.
+
+7.Then we changed the editor of creating the post to the markdown text editor.
+
+8.We then added the Slug feature to map the urls to the corresponding posts.
+
+9.Then I added the User Authentication System to the Forum.
+
+10.An additional comment section was also added to each post which can only be used by the
+
+authorised user.
+
+11.Unauthorised user can only comment on the posts through the Facebook Comment Plugin.
+
+12.Finally,we created the user page for each user on which he or she can see the posts created by
+
+himself.
+
+Salient Features of the Discussion Forum
+
+- user login and authenticatoin
+
+- if a user is not logged in= he can only view the posts.
+
+= he can neither create nor comment th posts
+
+- if a user is a authenticated user then he can create/edit/delete his posts and can also comment on
+
+toher's posts
+
+- user can edit and delete post and it cannot edit/delete any other's post
+
+- while creating new post
+
+= one can see live preview of what that post will look like
+
+= used stackoverflow style text editor
+
+= user can upload image from its local machine
+
+= user can also select publish date. if selected publish date is after the today's date then that post will
+
+remain hidden from main page till the selected publish date
+
+= text editor can also render markdown and html
+
+= This editor supports various types of technologies such as HTML, Linux Terminal Commands etc.You
+
+can also add links to the
+
+pictures and gifs.On adding the links to gifs and pics it shows its preview.
+
+- a search bar is also added whic can search a word or a phrase throughout the body, title and also
+
+author of the post
+
+- a user can also list all the posts created by him/her
